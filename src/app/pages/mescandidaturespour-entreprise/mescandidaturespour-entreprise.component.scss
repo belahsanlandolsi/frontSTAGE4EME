@@ -1,0 +1,70 @@
+.loading {
+    font-size: 1.2em;
+    color: #007bff;
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .error-message {
+    color: #dc3545;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .no-candidatures {
+    text-align: center;
+    font-style: italic;
+  }
+  
+  .candidature-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .documents {
+    margin-top: 20px;
+  }
+  
+  .document {
+    margin-bottom: 20px;
+  }
+  
+  .document-preview {
+    margin-top: 10px;
+  }
+  
+  .status {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  
+  .status-change {
+    margin-top: 20px;
+  }
+  
+  .btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .status-select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  

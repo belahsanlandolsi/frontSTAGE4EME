@@ -1,0 +1,63 @@
+<div *ngIf="isLoading" class="loading">
+    Chargement des candidatures...
+  </div>
+  
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+  
+  <div *ngIf="!isLoading && candidatures.length === 0" class="no-candidatures">
+    Aucune candidature trouvée.
+  </div>
+  
+  <section *ngFor="let candidature of candidatures" class="candidature-card">
+    <header>
+      <h2>Candidature pour {{ candidature.offre?.titre }}</h2>
+    </header>
+  
+    <div class="candidature-details">
+      <h3>Informations du candidat</h3>
+      <p><strong>Nom :</strong> {{ candidature.user?.firstName }}</p>
+      <p><strong>Prénom :</strong> {{ candidature.user?.lastName }}</p>
+      <p><strong>Email :</strong> {{ candidature.user?.emailPro }}</p>
+  
+      <div class="documents">
+        <h3>Documents</h3>
+  
+        <div *ngIf="candidature.cvUrl && candidature.id" class="document">
+          <h4>CV</h4>
+          <button (click)="toggleCv(candidature.id)" class="btn btn-primary">
+            {{ showCv[candidature.id] ? 'Masquer le CV' : 'Visualiser le CV' }}
+          </button>
+          <div *ngIf="showCv[candidature.id] && cvUrls[candidature.id]" class="document-preview">
+            <iframe [src]="cvUrls[candidature.id]" width="600" height="400" frameborder="0"></iframe>
+          </div>
+        </div>
+  
+        <div *ngIf="candidature.lettreDeMotivationUrl && candidature.id" class="document">
+          <h4>Lettre de motivation</h4>
+          <button (click)="toggleLettre(candidature.id)" class="btn btn-primary">
+            {{ showLettre[candidature.id] ? 'Masquer la lettre' : 'Visualiser la lettre de motivation' }}
+          </button>
+          <div *ngIf="showLettre[candidature.id] && lettreUrls[candidature.id]" class="document-preview">
+            <iframe [src]="lettreUrls[candidature.id]" width="600" height="400" frameborder="0"></iframe>
+          </div>
+        </div>
+      </div>
+  
+      <div class="status">
+        <h3>Statut actuel</h3>
+        <p>{{ candidature.status }}</p>
+      </div>
+  
+      <div class="status-change">
+        <h3>Changer le statut</h3>
+        <select *ngIf="candidature.id" (change)="onStatusChange(candidature.id, $event)" class="status-select">
+          <option *ngFor="let status of statusOptions" [value]="status" [selected]="status === candidature.status">
+            {{ status }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </section>
+  

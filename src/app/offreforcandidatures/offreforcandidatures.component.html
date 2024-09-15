@@ -1,0 +1,28 @@
+<div class="offres-container">
+  <h2>Offres d'Emploi par Entreprise</h2>
+  
+  <div *ngIf="groupedOffres.length === 0">
+    <p>Aucune offre disponible pour le moment.</p>
+  </div>
+
+  <div *ngFor="let group of groupedOffres" class="entreprise-section">
+    <h3>{{ group.company }} ({{ group.offres.length }} offres)</h3>
+    
+    <div *ngFor="let offre of group.offres" class="offre-card">
+      <img *ngIf="offre.user?.pic"
+           [src]="'http://localhost:8081/images/' + offre.user.pic"
+           alt="Photo de {{ offre.user?.firstName }}"
+           class="user-pic"
+           (error)="onImageError($event)">
+      <div class="offre-details">
+        <p><strong>Titre:</strong> {{ offre.titre}}</p>
+        <p><strong>Description:</strong> {{ offre.description }}</p>
+        <p><strong>Date de début:</strong> {{ offre.dateDebut | date:'shortDate' }}</p>
+        <p><strong>Date de fin:</strong> {{ offre.dateFin | date:'shortDate' }}</p>
+        <p><strong>Type:</strong> {{ offre.type }}</p>
+        <button (click)="postuler(offre.id)">Postuler</button>
+
+      </div>
+    </div>
+  </div>
+</div>

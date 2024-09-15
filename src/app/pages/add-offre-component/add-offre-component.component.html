@@ -1,0 +1,67 @@
+<form (ngSubmit)="onSubmit()" #offreForm="ngForm">
+
+  <mat-form-field appearance="fill">
+    <mat-label>Titre</mat-label>
+    <input matInput [(ngModel)]="offre.titre" name="titre" required #titre="ngModel">
+    <mat-error *ngIf="titre.invalid && titre.touched">
+      Le titre est requis
+    </mat-error>
+  </mat-form-field>
+  
+  <mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea matInput [(ngModel)]="offre.description" name="description" required #description="ngModel"></textarea>
+    <mat-error *ngIf="description.invalid && description.touched">
+      La description est requise
+    </mat-error>
+  </mat-form-field>
+  
+  <mat-form-field>
+    <mat-label>Type d'offre</mat-label>
+    <mat-select [(ngModel)]="offre.type" name="type" required #type="ngModel">
+      <mat-option *ngFor="let type of types" [value]="type">
+        {{ type }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="type.invalid && type.touched">
+      Le type d'offre est requis
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Statut</mat-label>
+    <mat-select [(ngModel)]="offre.statut" name="statut" required #statut="ngModel">
+      <mat-option value="Active">Active</mat-option>
+      <mat-option value="Inactive">Inactive</mat-option>
+      <mat-option value="Pending">Pending</mat-option>
+    </mat-select>
+    <mat-error *ngIf="statut.invalid && statut.touched">
+      Le statut est requis
+    </mat-error>
+  </mat-form-field>
+  
+  <mat-form-field appearance="fill">
+    <mat-label>Date de Début</mat-label>
+    <input matInput [matDatepicker]="picker1" [(ngModel)]="offre.dateDebut" name="dateDebut" required #dateDebut="ngModel">
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+    <mat-error *ngIf="dateDebut.invalid && dateDebut.touched">
+      La date de début est requise
+    </mat-error>
+  </mat-form-field>
+    
+  <mat-form-field appearance="fill">
+    <mat-label>Date de Fin</mat-label>
+    <input matInput [matDatepicker]="picker2" [(ngModel)]="offre.dateFin" name="dateFin" required #dateFin="ngModel">
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+    <mat-error *ngIf="dateFin.invalid && dateFin.touched">
+      La date de fin est requise
+    </mat-error>
+  </mat-form-field>
+  
+  <div class="form-actions">
+    <button mat-raised-button color="primary" type="submit" [disabled]="offreForm.invalid">Soumettre</button>
+    <button mat-raised-button (click)="router.navigate(['/offres'])" type="button">Annuler</button>
+  </div>
+</form>

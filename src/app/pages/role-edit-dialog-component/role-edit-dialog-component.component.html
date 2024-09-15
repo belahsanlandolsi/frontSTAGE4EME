@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Edit Roles</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Roles</mat-label>
+    <mat-select multiple [(ngModel)]="roles">
+      <mat-option *ngFor="let role of availableRoles" [value]="role">
+        {{ role }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button color="primary" (click)="onSave()">Save</button>
+</div>

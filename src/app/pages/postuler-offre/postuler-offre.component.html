@@ -1,0 +1,73 @@
+<div class="postuler-container container mt-5">
+    <div class="card shadow-lg">
+      <div class="card-header bg-primary text-white text-center">
+        <h2>Postuler à l'offre</h2>
+      </div>
+      <div class="card-body p-4">
+        <form (ngSubmit)="onSubmit()" novalidate>
+          <!-- Informations utilisateur -->
+          <section class="user-info mb-4">
+            <h4 class="text-secondary">Vos informations</h4>
+            <p><strong>Nom :</strong> {{ user?.firstName }} {{ user?.lastName }}</p>
+            <p><strong>Email :</strong> {{ user?.emailPro }}</p>
+          </section>
+  
+          <!-- Champs pour le CV -->
+          <div class="form-group mb-3">
+            <label for="cv" class="form-label">
+              <i class="bi bi-file-earmark-arrow-up"></i> Votre CV
+              <span class="text-danger">*</span>
+            </label>
+            <input 
+              type="file" 
+              id="cv" 
+              class="form-control" 
+              (change)="onFileSelect($event, 'cv')" 
+              required 
+              accept=".pdf,.doc,.docx"
+              aria-required="true"
+              aria-describedby="cvHelp"
+            />
+            <small id="cvHelp" class="form-text text-muted">
+              Formats acceptés : PDF, DOC, DOCX. Taille maximale : 5 Mo
+            </small>
+            <div *ngIf="selectedCv" class="mt-2">
+              <p><strong>Fichier sélectionné :</strong> {{ selectedCv }}</p>
+            </div>
+          </div>
+  
+          <!-- Champs pour la lettre de motivation -->
+          <div class="form-group mb-4">
+            <label for="lettreDeMotivation" class="form-label">
+              <i class="bi bi-file-earmark-text"></i> Lettre de motivation
+              <span class="text-danger">*</span>
+            </label>
+            <input 
+              type="file" 
+              id="lettreDeMotivation" 
+              class="form-control" 
+              (change)="onFileSelect($event, 'lettreDeMotivation')" 
+              required 
+              accept=".pdf,.doc,.docx"
+              aria-required="true"
+              aria-describedby="lettreDeMotivationHelp"
+            />
+            <small id="lettreDeMotivationHelp" class="form-text text-muted">
+              Formats acceptés : PDF, DOC, DOCX. Taille maximale : 5 Mo
+            </small>
+            <div *ngIf="selectedLettreDeMotivation" class="mt-2">
+              <p><strong>Fichier sélectionné :</strong> {{ selectedLettreDeMotivation }}</p>
+            </div>
+          </div>
+  
+          <!-- Bouton de soumission -->
+          <div class="text-center">
+            <button type="submit" class="btn btn-success btn-lg px-5">
+              <i class="bi bi-send"></i> Envoyer ma candidature
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

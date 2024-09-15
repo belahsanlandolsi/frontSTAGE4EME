@@ -1,0 +1,31 @@
+<div *ngFor="let candidature of candidatures" class="candidature-item">
+    <div class="candidature-header">
+        <h3>{{ candidature.offre?.titre ? 'Titre de poste : ' + candidature.offre?.titre : 'Titre non disponible' }}</h3>
+        <p>Date de candidature : {{ candidature.dateDeCandidature ? (candidature.dateDeCandidature | date : 'dd/MM/yyyy') : 'Date non disponible' }}</p>
+    </div>
+    
+    <div class="candidature-status">
+        <p>Status de réponse :</p>
+        <span class="status-badge"
+              [ngClass]="{
+                'pending': candidature.status === 'PENDING',
+                'accepted': candidature.status === 'ACCEPTED',
+                'rejected': candidature.status === 'REJECTED',
+                'selected': candidature.status === 'SELECTED'
+              }">
+            {{ candidature.status }}
+        </span>
+    </div>
+    
+    <div class="candidature-documents">
+        <p>Documents :</p>
+        <div class="document-icons">
+            <i *ngIf="candidature.cvUrl" class="material-icons">attach_file</i>
+            <i *ngIf="candidature.lettreDeMotivationUrl" class="material-icons">description</i>
+        </div>
+    </div>
+    
+    <div class="candidature-actions">
+        <!-- Ajouter des actions si nécessaire -->
+    </div>
+</div>

@@ -1,0 +1,32 @@
+import { Routes } from '@angular/router';
+
+import { AppSideLoginComponent } from './login/login.component';
+import { AppSideRegisterComponent } from './register/register.component';
+import { ForgotPasswordComponentComponent } from './forgot-password-component/forgot-password-component.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+
+export const AuthenticationRoutes: Routes = [
+  {
+    path: '',
+    children: [
+      {
+        path: 'login',
+        component: AppSideLoginComponent,
+      },
+      {
+        path: 'register',
+        component: AppSideRegisterComponent,
+      },
+      {
+        path: 'forgot-password',
+        component: ForgotPasswordComponentComponent,
+      },
+      {
+        path: 'reset-password',
+        component: ResetPasswordComponent, // Ajoutez cette ligne
+      },
+    ],
+  
+  },
+  
+];

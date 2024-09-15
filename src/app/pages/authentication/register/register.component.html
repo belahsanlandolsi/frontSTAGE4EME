@@ -1,0 +1,117 @@
+<div class="blank-layout-container justify-content-center align-items-center bg-light-primary">
+  <div class="position-relative row w-100 h-100 bg-gradient justify-content-center">
+    <div class="col-lg-4 d-flex align-items-center">
+      <mat-card class="cardWithShadow boxed-auth">
+        <mat-card-content class="p-32">
+          <div class="text-center">
+            <a [routerLink]="['/authentication/register']">
+              <img
+                src="./assets/images/logos/LOGO.svg.png"
+                class="align-middle m-2 logo-small"
+                alt="logo"
+              />
+            </a>
+          </div>
+
+          <div class="row mt-24 custom-row">
+            <div class="col-12 col-sm-6">
+              <button mat-stroked-button class="w-100">
+                <div class="d-flex align-items-center">
+                  <img src="./assets/images/svgs/google-icon.svg" alt="Google" width="16" class="mr-8" />
+                  Sign in with Google
+                </div>
+              </button>
+            </div>
+            <div class="col-12 col-sm-6">
+              <button mat-stroked-button class="w-100 d-flex align-items-center">
+                <div class="d-flex align-items-center">
+                  <img src="./assets/images/svgs/facebook-icon.svg" alt="Facebook" width="40" class="mr-4" />
+                  Sign in with Facebook
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <div class="or-border mt-30">or sign up with</div>
+
+          <form class="mt-30" [formGroup]="form" (ngSubmit)="submit()">
+            <!-- User Type Selection -->
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>User Type</mat-label>
+              <mat-select formControlName="userType" (selectionChange)="onUserTypeChange($event.value)">
+                <mat-option value="individual">Individual</mat-option>
+                <mat-option value="company">MAIL</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <!-- First Name -->
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>First Name</mat-label>
+              <input matInput formControlName="firstName" placeholder="Enter your first name" aria-describedby="firstNameError" />
+              <mat-error id="firstNameError" *ngIf="f['firstName'].invalid && f['firstName'].touched">
+                First name is required and should be at least 2 characters long.
+              </mat-error>
+            </mat-form-field>
+            
+            <!-- Last Name -->
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Last Name</mat-label>
+              <input matInput formControlName="lastName" placeholder="Enter your last name" aria-describedby="lastNameError" />
+              <mat-error id="lastNameError" *ngIf="f['lastName'].invalid && f['lastName'].touched">
+                Last name is required and should be at least 2 characters long.
+              </mat-error>
+            </mat-form-field>
+            
+            <!-- Login -->
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Login</mat-label>
+              <input matInput formControlName="login" placeholder="Enter your login" aria-describedby="loginError" />
+              <mat-error id="loginError" *ngIf="f['login'].invalid && f['login'].touched">
+                Login is required and should be at least 6 characters long.
+              </mat-error>
+            </mat-form-field>
+            
+            <!-- Email Address -->
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Email Address</mat-label>
+              <input matInput type="email" formControlName="emailPro" placeholder="Enter your professional email" aria-describedby="emailError" />
+              <mat-error id="emailError" *ngIf="f['emailPro'].invalid && f['emailPro'].touched">
+                A valid email is required.
+              </mat-error>
+            </mat-form-field>
+            
+            <!-- Password -->
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" formControlName="password" placeholder="Enter your password" aria-describedby="passwordError" />
+              <mat-error id="passwordError" *ngIf="f['password'].invalid && f['password'].touched">
+                Password is required and should be at least 8 characters long.
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Company Name (Only shown if userType is 'company') -->
+            <mat-form-field *ngIf="isCompany" appearance="outline" class="w-100">
+              <mat-label>Company Name</mat-label>
+              <input matInput formControlName="company" placeholder="Enter your company name" />
+            </mat-form-field>
+            
+            <!-- Submit Button -->
+            <button mat-flat-button color="primary" class="w-100" type="submit" [disabled]="form.invalid || isSubmitting">
+              <span *ngIf="isSubmitting">
+                <mat-spinner diameter="20"></mat-spinner>
+              </span>
+              <span *ngIf="!isSubmitting">Sign Up</span>
+            </button>
+          </form>
+
+          <span class="d-block font-weight-bold text-center mt-24">
+            Already have an Account?
+            <a [routerLink]="['/authentication/login']" class="text-decoration-none text-primary font-weight-bold font-size-14">
+              Sign In
+            </a>
+          </span>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

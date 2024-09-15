@@ -1,0 +1,52 @@
+.candidature-item {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 16px;
+    margin-bottom: 16px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.candidature-header {
+    margin-bottom: 8px;
+}
+
+.candidature-status {
+    margin-bottom: 8px;
+}
+
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.pending {
+    background-color: #f0ad4e;
+}
+
+.accepted {
+    background-color: #5bc0de;
+}
+
+.rejected {
+    background-color: #d9534f;
+}
+
+.selected {
+    background-color: #5cb85c;
+}
+
+.candidature-documents {
+    margin-bottom: 8px;
+}
+
+.document-icons {
+    font-size: 24px;
+}
+
+.document-icons .material-icons {
+    margin-right: 8px;
+    color: #333;
+}

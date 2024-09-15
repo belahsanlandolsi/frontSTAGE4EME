@@ -1,0 +1,86 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .form-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.2); /* 3D effect */
+    max-width: 600px;
+    width: 100%;
+  }
+
+  .form-container h2 {
+    text-align: center;
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input[type="file"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+  }
+
+  button:hover {
+    background-color: #218838;
+  }
+
+  .info {
+    margin-bottom: 20px;
+  }
+
+  .info p {
+    margin: 5px 0;
+  }
+
+  small {
+    display: block;
+    color: #888;
+    margin-top: 5px;
+  }
+
+  .snackbar-success {
+    background-color: #4caf50; /* Couleur de fond verte pour le succès */
+    color: #ffffff; /* Couleur du texte blanche */
+    font-weight: bold; /* Texte en gras */
+  }
+  
+  .snackbar-error {
+    background-color: #f44336; /* Couleur de fond rouge pour l'erreur */
+    color: #ffffff; /* Couleur du texte blanche */
+    font-weight: bold; /* Texte en gras */
+  }
