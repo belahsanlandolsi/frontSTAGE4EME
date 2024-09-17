@@ -11,6 +11,9 @@ import { OffreforcandidaturesComponent } from './offreforcandidatures/offreforca
 import { PostulerOffreComponent } from './pages/postuler-offre/postuler-offre.component';
 import { MescandidaturesComponent } from './pages/mescandidatures/mescandidatures.component';
 import { MescandidaturespourENtrepriseComponent } from './pages/mescandidaturespour-entreprise/mescandidaturespour-entreprise.component';
+import { RessourcesConseilsComponent } from './pages/ressources-conseils/ressources-conseils.component';
+import { OffresSauvegardeesComponent } from './offres-sauvegardees/offres-sauvegardees.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 const routes: Routes = [
   {
@@ -33,6 +36,10 @@ const routes: Routes = [
         path: 'dashboard',
         loadChildren: () =>
           import('./pages/pages.module').then((m) => m.PagesModule),
+      },
+      {
+        path: 'dashboard1',
+        component: AdminDashboardComponent,
       },
       {
         path: 'profile',
@@ -58,6 +65,16 @@ const routes: Routes = [
         path: 'mescandidaturesEntreprise',
         component: MescandidaturespourENtrepriseComponent,
       },
+      {
+        path: 'ressources',
+        component: RessourcesConseilsComponent,
+      },
+      {
+        path: 'offresaved',
+        component: OffresSauvegardeesComponent,
+      },
+      
+      
 
      
       {

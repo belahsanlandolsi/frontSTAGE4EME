@@ -1,13 +1,13 @@
 <div class="offres-container">
   <h2>Offres d'Emploi par Entreprise</h2>
-  
+
   <div *ngIf="groupedOffres.length === 0">
     <p>Aucune offre disponible pour le moment.</p>
   </div>
 
   <div *ngFor="let group of groupedOffres" class="entreprise-section">
     <h3>{{ group.company }} ({{ group.offres.length }} offres)</h3>
-    
+
     <div *ngFor="let offre of group.offres" class="offre-card">
       <img *ngIf="offre.user?.pic"
            [src]="'http://localhost:8081/images/' + offre.user.pic"
@@ -15,13 +15,17 @@
            class="user-pic"
            (error)="onImageError($event)">
       <div class="offre-details">
-        <p><strong>Titre:</strong> {{ offre.titre}}</p>
+        <p><strong>Titre:</strong> {{ offre.titre }}</p>
         <p><strong>Description:</strong> {{ offre.description }}</p>
         <p><strong>Date de début:</strong> {{ offre.dateDebut | date:'shortDate' }}</p>
         <p><strong>Date de fin:</strong> {{ offre.dateFin | date:'shortDate' }}</p>
         <p><strong>Type:</strong> {{ offre.type }}</p>
         <button (click)="postuler(offre.id)">Postuler</button>
-
+        <button [disabled]="isSaved(offre.id)" (click)="sauvegarderOffre(offre.id)">
+          Sauvegarder l'offre
+        </button>
+        <button *ngIf="isSaved(offre.id)" (click)="desauvegarderOffre(offre.id)">Désenregistrer cette offre</button>
+        <span *ngIf="isSaved(offre.id)" class="saved-message">Offre déjà sauvegardée</span>
       </div>
     </div>
   </div>

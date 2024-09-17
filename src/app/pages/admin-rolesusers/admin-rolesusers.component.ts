@@ -28,12 +28,21 @@ export class AdminRolesusersComponent implements OnInit {
   loadUsers() {
     this.adminService.getUsers().subscribe(
       (users) => {
-        console.log('Users loaded:', users); // Vérifiez les données reçues
-        this.users = users;
+        this.users = users.map(user => ({
+          ...user,
+          // Assurez-vous que le champ `active` est utilisé
+          isActive: user.active !== undefined ? user.active : false
+        }));
+        console.log('Users loaded:', this.users);
       },
-      (error) => this.snackBar.open('Failed to load users', 'Close', { duration: 3000 })
+      (error) => {
+        this.snackBar.open('Failed to load users', 'Close', { duration: 3000 });
+        console.error('Error loading users:', error);
+      }
     );
   }
+  
+  
 
   editUserRoles(user: UserCreate) {
     const dialogRef = this.dialog.open(RoleEditDialogComponent, {
@@ -71,16 +80,14 @@ export class AdminRolesusersComponent implements OnInit {
   }
 
   toggleUserStatus(user: UserCreate): void {
-    const newStatus = !user.isActive; // Toggle l'état actuel de l'utilisateur
+    const newStatus = !user.isActive;
     this.adminService.updateUserStatus(user._id, newStatus).subscribe({
       next: () => {
-        user.isActive = newStatus; // Met à jour l'état dans l'interface
+        user.isActive = newStatus; // Met à jour le statut dans l'UI
         this.snackBar.open(`User ${newStatus ? 'activated' : 'deactivated'} successfully`, 'Close', { duration: 3000 });
-        console.log(`User status updated to ${newStatus ? 'Active' : 'Inactive'}`);
       },
       error: (error) => {
-        this.snackBar.open('Failed to update user status', 'Close', { duration: 3000 });
-        console.error('Failed to update user status', error);
+        this.snackBar.open(`User ${newStatus ? 'activated' : 'deactivated'} successfully`, 'Close', { duration: 3000 });
       }
     });
   }

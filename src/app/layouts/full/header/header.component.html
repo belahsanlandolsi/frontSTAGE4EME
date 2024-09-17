@@ -1,60 +1,50 @@
-<mat-toolbar class="topbar">
+<mat-toolbar style="display: flex; align-items: center; justify-content: space-between; padding: 0 16px; background-color: #ffffff; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
   <!-- Mobile Menu -->
-  <button mat-icon-button (click)="toggleMobileNav.emit()" *ngIf="!showToggle">
+  <button mat-icon-button (click)="toggleMobileNav.emit()" *ngIf="!showToggle" style="background: transparent; border: none;">
     <i-tabler name="menu-2" class="icon-20 d-flex"></i-tabler>
   </button>
-  
-  
 
-  <span class="flex-1-auto"></span>
+  <!-- Recherche de stage et emploi -->
+  <div style="background-color: #f5f5f5; padding: 8px 16px; border-radius: 4px; font-size: 14px; color: #333; text-align: center; margin: 0 auto;">
+    Explorez des opportunités de carrière passionnantes avec nos offres de stage et d'emploi !
+  </div>
 
- 
+  <span style="flex: 1;"></span>
 
+  <!-- Menu Profil -->
   <button
     mat-icon-button
     [matMenuTriggerFor]="profilemenu"
     aria-label="Profile"
     class="m-l-10"
+    style="background: transparent; border: none;"
   >
     <img
       *ngIf="profilePicUrl"
       [src]="profilePicUrl"
-      class="rounded-circle object-cover"
+      style="border-radius: 50%; object-fit: cover;"
       width="35"
       alt="Profile Picture"
     />
   </button>
-  
-  <mat-menu #profilemenu="matMenu" xPosition="before" class="topbar-dd cardWithShadow">
-    <button mat-menu-item [routerLink]="['/profile']">
 
-      <mat-icon class="d-flex align-items-center">
+  <mat-menu #profilemenu="matMenu" xPosition="before" style="box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
+    <button mat-menu-item [routerLink]="['/profile']" style="display: flex; align-items: center;">
+      <mat-icon style="display: flex; align-items: center;">
         <i-tabler name="user" class="icon-18 d-flex"></i-tabler>
       </mat-icon>
-      My Profile
-    </button>
-    <button mat-menu-item>
-      <mat-icon class="d-flex align-items-center">
-        <i-tabler name="mail" class="icon-18 d-flex"></i-tabler>
-      </mat-icon>
-      My Account
-    </button>
-    <button mat-menu-item>
-      <mat-icon class="d-flex align-items-center">
-        <i-tabler name="list-check" class="icon-18 d-flex"></i-tabler>
-      </mat-icon>
-      My Task
+      Mon Profil
     </button>
 
-    <div class="p-x-12 m-t-12">
-      <a
-        [routerLink]="['/authentication/login']"
+    <div style="padding: 0 12px; margin-top: 12px;">
+      <button
         mat-flat-button
         color="primary"
-        class="w-100"
+        style="width: 100%; background-color: #1976d2; color: white; text-align: center; border-radius: 4px;"
+        (click)="logout()"
       >
-        Logout
-      </a>
+        Déconnexion
+      </button>
     </div>
   </mat-menu>
 </mat-toolbar>

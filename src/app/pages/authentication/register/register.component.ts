@@ -52,7 +52,7 @@ export class AppSideRegisterComponent {
         emailPro: this.form.value.emailPro!,
         password: this.form.value.password!,
         company: this.isCompany ? this.form.value.company : undefined,
-        isActive: this.form.value.isActive,
+        active: this.form.value.isActive,
       };
 
       this.authService.registerUser(user).subscribe(

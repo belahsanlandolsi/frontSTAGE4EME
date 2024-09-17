@@ -34,7 +34,7 @@ export class AppSideLoginComponent implements OnInit {
           this.authService.setUserRole(response.role); // Assurez-vous que 'role' est inclus dans la réponse
 
           // Redirection vers le tableau de bord ou la page d'accueil
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/offreforcandidatures']);
         },
         error => {
           // Gestion des erreurs de connexion

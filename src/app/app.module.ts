@@ -46,6 +46,10 @@ import { MescandidaturesComponent } from './pages/mescandidatures/mescandidature
 import { MescandidaturespourENtrepriseComponent } from './pages/mescandidaturespour-entreprise/mescandidaturespour-entreprise.component';
 import { SafeUrlPipe } from './safe-url.pipe';
 import { PagesModule } from './pages/pages.module';
+import { RessourcesConseilsComponent } from './pages/ressources-conseils/ressources-conseils.component';
+import { OffresSauvegardeesComponent } from './offres-sauvegardees/offres-sauvegardees.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 const routes: Routes = [
   {
@@ -84,9 +88,10 @@ export const MY_DATE_FORMATS = {
     OffreforcandidaturesComponent,
     PostulerOffreComponent,
     MescandidaturesComponent,
-    MescandidaturespourENtrepriseComponent
-
-    
+    MescandidaturespourENtrepriseComponent,
+    RessourcesConseilsComponent,
+    OffresSauvegardeesComponent,
+    AdminDashboardComponent    
     
   ],
   imports: [
@@ -105,7 +110,8 @@ export const MY_DATE_FORMATS = {
     MatCardModule,
     MatButtonModule,
     CommonModule,
-    PagesModule
+    PagesModule,
+    NgApexchartsModule
     
     
     

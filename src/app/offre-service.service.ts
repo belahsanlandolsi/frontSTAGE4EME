@@ -1,7 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { Offre } from './models/offre';
+import { OffreSauvegardee } from './models/OffreSauvegardee';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class OffreServiceService {
 
   private apiUrl1 = 'http://localhost:8081/api/offres/add';
   private apiUrl2 = 'http://localhost:8081/api/candidature'; // URL du backend
-
+  private apiUrlSauvegarde = 'http://localhost:8081/api/auth/offres-sauvegardees'; // URL pour les offres sauvegardées
 
   constructor(private http: HttpClient) { } // Injection de HttpClient
 
@@ -22,6 +23,7 @@ export class OffreServiceService {
       'Authorization': `Bearer ${token}`
     });
   }
+  
 
   getAllOffres(): Observable<Offre[]> {
     return this.http.get<Offre[]>(`${this.apiUrl2}/offres`, { headers: this.getAuthHeaders() }).pipe(
@@ -85,6 +87,54 @@ export class OffreServiceService {
     return this.http.get<Offre[]>(`${this.apiUrl}/my-offres`, { headers: this.getAuthHeaders() });
   }
 
+  // sauvegarderOffre(offreId: string): Observable<string> {
+  //   const params = new HttpParams().set('offreId', offreId);
   
+  //   return this.http.post<string>(`${this.apiUrl}/sauvegarder`, null, {
+  //     headers: this.getAuthHeaders(),
+  //     params: params
+  //   }).pipe(
+  //     catchError(this.handleError)
+  //   );
+  // }
+  // offre-service.service.ts
+  sauvegarderOffre(offreId: string): Observable<any> {
+    if (!offreId) {
+      console.error('offreId est undefined ou null');
+      return throwError('offreId est undefined ou null');
+    }
+  
+    const headers = this.getAuthHeaders(); // Obtenez les en-têtes d'authentification
+    const params = new HttpParams().set('offreId', offreId);
+  
+    return this.http.post<any>(`${this.apiUrl}/sauvegarder`, null, { headers, params })
+      .pipe(
+        catchError(this.handleError) // Gérer les erreurs
+      );
+  }
+  
+  
+  
+  // Désenregistrer une offre
+  desauvegarderOffre(offreId: string): Observable<string> {
+    return this.http.post<string>(`${this.apiUrl}/desauvegarder`, { offreId });
+  }
+
+  // Récupérer les offres sauvegardées
+  getSavedOffres(): Observable<OffreSauvegardee[]> {
+    const headers = this.getAuthHeaders(); // Assurez-vous que cette méthode renvoie le bon en-tête avec le token JWT
+    return this.http.get<OffreSauvegardee[]>(`${this.apiUrlSauvegarde}`, { headers });
+  }
+  
+
+
+  isOffreSauvegardee(offreId: string): Observable<boolean> {
+    const params = new HttpParams().set('offreId', offreId);
+    
+    return this.http.get<boolean>(`${this.apiUrl}/isOffreSauvegardee`, {
+      headers: this.getAuthHeaders(),
+      params: params
+    });
+  }
   
 }

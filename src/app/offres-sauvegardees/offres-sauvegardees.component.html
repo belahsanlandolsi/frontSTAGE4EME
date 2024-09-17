@@ -1,0 +1,22 @@
+<!-- offres-sauvegardees.component.html -->
+<div class="offres-container">
+    <mat-card *ngIf="offresSauvegardees.length === 0" class="no-offres-card">
+      <mat-card-content>
+        <mat-icon>info</mat-icon>
+        <p>Aucune offre sauvegardée</p>
+      </mat-card-content>
+    </mat-card>
+  
+    <div *ngIf="offresSauvegardees.length > 0" class="offres-list">
+      <mat-card *ngFor="let offre of offresSauvegardees" class="offre-card">
+        <mat-card-header>
+          <mat-card-title>{{ offre.titreOffre }}</mat-card-title>
+          <mat-card-subtitle>Date de sauvegarde: {{ offre.dateSauvegarde | date }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions>
+          <button mat-button color="warn" (click)="desauvegarderOffre(offre._id)">Désenregistrer</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+  

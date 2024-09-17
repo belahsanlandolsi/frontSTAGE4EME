@@ -55,6 +55,8 @@ export class AuthService {
       tap((response: any) => {
         if (response && response.token) {
           localStorage.setItem('token', response.token);
+         // localStorage.setItem('userId', response.userId); // Stockez l'ID de l'utilisateur
+
         }
       }),
       catchError(error => {

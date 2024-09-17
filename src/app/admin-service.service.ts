@@ -60,7 +60,6 @@ export class AdminService {
     return this.http.put(`${this.apiUrl}/users/${id}/${action}`, {}, { headers: this.getAuthHeaders() });
   }
   
-  
 
   getAvailableRoles(): Observable<RoleName[]> {
     return this.http.get<RoleName[]>(`${this.apiUrl}/roles`, { headers: this.getAuthHeaders() });

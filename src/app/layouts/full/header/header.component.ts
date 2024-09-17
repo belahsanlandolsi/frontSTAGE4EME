@@ -7,6 +7,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserProfileService } from 'src/app/user-profile.service';
 
@@ -26,7 +27,7 @@ export class HeaderComponent implements OnInit {
   showFiller = false;
   profilePicUrl: string = '';
 
-  constructor(private userservice: UserProfileService) {}
+  constructor(private userservice: UserProfileService,private router: Router) {}
 
   ngOnInit(): void {
     this.loadUserProfilePic();
@@ -48,5 +49,13 @@ export class HeaderComponent implements OnInit {
         this.profilePicUrl = 'path/to/default/profile-pic.jpg';
       }
     );
+  }
+
+  logout() {
+    // Supprimer le jeton ou les informations de session ici
+    localStorage.removeItem('token'); // ou le nom de la clé utilisé pour le token
+
+    // Rediriger vers la page de connexion
+    this.router.navigate(['/authentication/login']);
   }
 }

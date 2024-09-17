@@ -1,0 +1,25 @@
+<div class="ressources-conseils-container">
+    <h2>Ressources et Conseils</h2>
+  
+    <div class="section">
+      <h3>Conseils pour les entretiens</h3>
+      <ul>
+        <li *ngFor="let conseil of conseilsEntretien">
+          <h4>{{ conseil.title }}</h4>
+          <p>{{ conseil.description }}</p>
+          <a [href]="conseil.link" target="_blank">Voir plus</a>
+        </li>
+      </ul>
+    </div>
+  
+    <div class="section">
+      <h3>Modèles de CV et Lettres de motivation</h3>
+      <ul>
+        <li *ngFor="let modele of modelesCvLettre">
+          <h4>{{ modele.title }}</h4>
+          <a [href]="modele.link" target="_blank">Télécharger</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
